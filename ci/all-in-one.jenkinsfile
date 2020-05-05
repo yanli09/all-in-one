@@ -1,10 +1,69 @@
 pipeline {
     agent any
+
     stages {
+        stage('Source') {
+                steps {
+                    sh 'mvn --version'
+                }
+            }
         stage('Build') {
             steps {
                 sh 'mvn --version'
             }
         }
+        stage('UnitTest') {
+             steps {
+                  sh 'mvn --version'
+             }
+        }
+        stage('Integration') {
+              steps {
+                   sh 'mvn --version'
+              }
+        }
+        stage('APITest') {
+              steps {
+                    sh 'mvn --version'
+               }
+        }
+        stage('FrontendTest') {
+               steps {
+                     sh 'mvn --version'
+              }
+        }
+        stage('Package') {
+                steps {
+                      sh 'mvn --version'
+              }
+        }
+        stage('Upload') {
+              steps {
+                     sh 'mvn --version'
+              }
+         }
+        stage('Deployment') {
+               steps {
+                     sh 'mvn --version'
+              }
+        }
+        stage('E2ETest') {
+              steps {
+                     sh 'mvn --version'
+              }
+        }
+        stage('PerformanceTest') {
+                steps {
+                    sh 'mvn --version'
+              }
+        }
+    }
+
+    post{
+       always{
+           mail to: 'yang_ustber@126.com',
+           subject: "Status of pipeline : ${currentBuild.fullDisplayName}",
+           body: "${env.BUILD_URL} has result ${currentBuild.result}"
+       }
     }
 }
